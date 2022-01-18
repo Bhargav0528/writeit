@@ -35,7 +35,7 @@ function HomePage() {
             {/* Headers  */}
             <div className="headercontainer">
                 <HeaderContainer>
-                    <h1 style={{color: logocolor}}>WriteIt</h1>
+                    <h1 style={{color: logocolor}}>WriteIt v1</h1>
                 </HeaderContainer>
 
                 <MenuContainer>
