@@ -6,6 +6,7 @@ import ContactUs from "./ContactUs"
 import styled from "styled-components"
 
 import "./homepage.css"
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom"
 
 function HomePage() {
 
@@ -33,48 +34,47 @@ function HomePage() {
     return (
         <div>
             {/* Headers  */}
+            <BrowserRouter>
             <div className="headercontainer">
                 <HeaderContainer>
                     <h1 style={{color: logocolor}}>WriteIt v1</h1>
                 </HeaderContainer>
 
+                
                 <MenuContainer>
-                    <h4 
-                        style={{cursor: "pointer"}} 
-                        onClick={() => {setWhattorender("aboutus")}}
-                    >
-                        About Us
-                    </h4>
-                    <h4 
-                        style={{cursor: "pointer"}} 
-                        onClick={() => {setWhattorender("contactus")}}
-                    >
-                        Contact Us
-                    </h4><h4 
-                        style={{cursor: "pointer"}} 
-                        onClick={() => {setWhattorender("blog")}}
-                    >
-                       Blog
-                    </h4>
+                    <Link to="/about-us">
+                        <h4 style={{cursor: "pointer"}} >
+                            About Us
+                        </h4>
+                    </Link>
+
+                    <Link to="/contact-us">
+                        <h4 style={{cursor: "pointer"}}  >
+                            Contact Us
+                        </h4>
+                    </Link>
+
+                    <Link
+                        state={"dawdw"}
+                        to={{pathname : "/blog", state: {xyz: "dawdw"}}}>
+                        <h4 style={{cursor: "pointer"}} >
+                        Blog
+                        </h4>
+                    </Link>
                 </MenuContainer>
             </div>
             {/* Headers  */}
 
 
             {/* Body  */}
-                {
-                    whattorender == "blog" 
-                    ? <Blog />
-                    : whattorender == "aboutus"
-                        ? <AboutUs 
-                            userName={usrname} 
-                            ageOfTheUser={age} 
-                            changeLogoColor={() => {
-                                setLogoColor("#000")
-                            }}
-                        />
-                    : <ContactUs />
-                }
+                
+                    <Routes>
+                        <Route path="/" element={<ContactUs />} />
+                        <Route path="/about-us" element={<AboutUs />} />
+                        <Route path="/contact-us" element={<ContactUs />} />
+                        <Route path="/blog" element={<Blog />} />
+                    </Routes>
+                </BrowserRouter>
             
             {/* Body  */}
         </div>
